@@ -1,0 +1,99 @@
+ *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(135deg, #3d1f8f, #26145c);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container{
+            width: 650px;
+        }
+
+        .card{
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 45px;
+        }
+
+        .formulario{
+            background: #d9d4ea;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label{
+            display: inline-block;
+            background: #b6add6;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"]{
+            width: 100%;
+            padding: 12px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        input[type="range"]{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        button{
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            font-size: 22px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover{
+            background: #3e9441;
+        }
+
+        .resultado{
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .resultado h2{
+            color: #32208a;
+            margin-bottom: 15px;
+            font-size: 38px;
+        }
+
+        .resultado p{
+            font-size: 28px;
+            line-height: 1.5;
+        }
+
+        strong{
+            font-weight: bold;
+        }

@@ -1,7 +1,9 @@
 <?php
+
+// Inicia a sessão
 session_start();
 
-// Remove todas as sessões
+// Remove todos os dados da sessão
 session_destroy();
 
 // Redireciona para a página inicial

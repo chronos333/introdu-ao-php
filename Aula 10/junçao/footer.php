@@ -1,0 +1,1 @@
+<h3> Todos os direitos reservados - 2026 </h3>
