@@ -1,42 +1,37 @@
 <?php
 
-session_start();
+    // usuário "fake" para teste (sem banco de dados)
+    $usuario_correto = "admin";
+    $senha_correta = "1234";
 
-require_once "conexao.php";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $nome = $_POST['nome'];
+        $senha = $_POST['senha'];
 
-    $nome = $_POST['nome'];
-    $credencial = $_POST['credencial'];
-    $senha = $_POST['senha'];
+        // validação simples
+        if ($nome === $usuario_correto && $senha === $senha_correta) {
 
-    $sql = "SELECT * FROM funcionarios
-            WHERE credencial = :credencial
-            AND senha = :senha";
+            echo "<h1>Bem-vindo ao GameIntel</h1>";
+            echo "<p>Login realizado com sucesso!</p>";
+            echo "<p>Usuário: " . htmlspecialchars($nome) . "</p>";
 
-    $resultado = $conexao->prepare($sql);
+        } else {
 
-    $resultado->bindParam(":credencial", $credencial);
-    $resultado->bindParam(":senha", $senha);
-
-    $resultado->execute();
-
-    $funcionario = $resultado->fetch(PDO::FETCH_ASSOC);
-
-    if($funcionario){
-
-        $_SESSION['usuario'] = $funcionario['nome'];
-
-    }else{
-
-        die("Credenciais inválidas");
-
+            echo "<h1 style='color:red;'>Erro no login</h1>";
+            echo "<p>Usuário ou senha incorretos!</p>";
+            echo "<a href='index.php'>Voltar</a>";
+        }
     }
 
-}else{
 
-    die("Acesso inválido");
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-}
+        $nome = $_POST['nome'];
+        $senha = $_POST['senha'];
+
+        echo "<h1>Bem-vindo, " . htmlspecialchars($nome) . "</h1>";
+        echo "<p>Login realizado com sucesso!</p>";
+    }
 
 ?>
