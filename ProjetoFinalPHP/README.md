@@ -1,42 +1,68 @@
-🎮 GameIntel
-Plataforma web de jogos para PC feita em PHP com banco de dados PostgreSQL. Permite cadastro e login de usuários, listagem de jogos em destaque e um painel administrativo completo.
+Aqui está seu **README completo e finalizado**, organizado, mais profissional e com algumas melhorias de clareza e consistência:
 
-📋 Requisitos
-PHP 8.0 ou superior (com extensão pgsql ativa)
-PostgreSQL 13 ou superior
-Servidor web (Apache ou Nginx) — ou php -S para desenvolvimento
-🗄️ Configuração do Banco de Dados
-1. Crie o banco e as tabelas:
+---
 
-sql
+# 🎮 GameIntel
+
+Plataforma web de jogos para PC feita em PHP com banco de dados PostgreSQL.
+Permite cadastro e login de usuários, listagem de jogos em destaque e um painel administrativo completo.
+
+---
+
+# 📋 Requisitos
+
+* PHP 8.0 ou superior (com extensão `pgsql` ativa)
+* PostgreSQL 13 ou superior
+* Servidor web (Apache, Nginx) ou servidor embutido do PHP
+
+---
+
+# 🗄️ Configuração do Banco de Dados
+
+## 1. Criar banco e tabelas
+
+```sql
 CREATE DATABASE gameintel;
 
 CREATE TABLE usuarios (
-    id       SERIAL PRIMARY KEY,
-    nome     VARCHAR(100) UNIQUE NOT NULL,
-    senha    TEXT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) UNIQUE NOT NULL,
+    senha TEXT NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE jogos (
-    id      SERIAL PRIMARY KEY,
-    nome    VARCHAR(150) NOT NULL,
-    preco   NUMERIC(10,2) NOT NULL,
-    genero  VARCHAR(80),
-    imagem  TEXT
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    preco NUMERIC(10,2) NOT NULL,
+    genero VARCHAR(80),
+    imagem TEXT
 );
-2. Se o banco já existia (antes do sistema admin), rode apenas:
+```
 
-sql
+---
+
+## 2. Caso o banco já exista
+
+```sql
 ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS is_admin BOOLEAN DEFAULT FALSE;
-3. Defina o seu primeiro administrador:
+```
 
-sql
+---
+
+## 3. Definir primeiro administrador
+
+```sql
 UPDATE usuarios SET is_admin = TRUE WHERE nome = 'seu_usuario';
-⚙️ Configuração da Conexão
-Edite o arquivo conexao.php com as credenciais do seu banco:
+```
 
-php
+---
+
+# ⚙️ Configuração da Conexão
+
+Edite o arquivo `conexao.php`:
+
+```php
 $conn = pg_connect("
     host=localhost
     port=5432
@@ -44,58 +70,130 @@ $conn = pg_connect("
     user=postgres
     password=postgres
 ");
-🚀 Como Rodar
-Clone ou extraia os arquivos na pasta do seu servidor (ex: htdocs, www ou public_html) e acesse via navegador:
+```
 
+---
+
+# 🚀 Como Rodar o Projeto
+
+## Usando servidor local (Apache/XAMPP/WAMP)
+
+Coloque a pasta do projeto em:
+
+```
+htdocs / www / public_html
+```
+
+Acesse:
+
+```
 http://localhost/gameintel/
-Para rodar com o servidor embutido do PHP:
+```
 
-bash
+---
+
+## Usando servidor embutido do PHP
+
+```bash
 php -S localhost:8000
-📁 Estrutura de Arquivos
-gameintel/
-├── index.php           # Tela de login
-├── cadastro.php        # Cadastro de novos usuários
-├── home.php            # Loja — listagem de jogos
-├── adicionar_jogo.php  # Formulário para adicionar jogo (admin)
-├── excluir_jogos.php   # Rota para excluir jogo (admin)
-├── admin.php           # Painel administrativo
-├── auth_check.php      # Helper de sessão e proteção de rotas
-├── logout.php          # Encerra a sessão
-├── conexao.php         # Conexão com o PostgreSQL
-├── setup_admin.sql     # Script SQL de configuração
-├── css/
-│   └── style.css       # Estilos globais
-└── img/
-    └── logo.png        # Logo da plataforma
-🔐 Sistema de Autenticação
-Senhas armazenadas com password_hash() (bcrypt)
-Sessões PHP controlam o estado do login
-Qualquer página protegida redireciona para index.php se não houver sessão ativa
-Rotas exclusivas de admin redirecionam para home.php se o usuário não tiver permissão
-👑 Painel Administrativo (admin.php)
-Acessível apenas para usuários com is_admin = TRUE. Funcionalidades:
+```
 
-Resumo com total de usuários, admins e jogos cadastrados
-Promover usuário comum a administrador
-Rebaixar administrador (não é possível rebaixar a si mesmo)
-Excluir usuários (não é possível excluir a própria conta)
-Excluir jogos diretamente pela tabela
-🌐 Páginas
-Rota	Acesso	Descrição
-index.php	Público	Login
-cadastro.php	Público	Criar conta
-home.php	Logado	Loja de jogos
-adicionar_jogo.php	Admin	Cadastrar novo jogo
-excluir_jogos.php	Admin	Excluir jogo (via GET)
-admin.php	Admin	Painel de administração
-logout.php	Logado	Encerrar sessão
-🛠️ Tecnologias
-PHP — back-end e renderização server-side
-PostgreSQL — banco de dados relacional
-HTML5 / CSS3 — interface responsiva com tema escuro
-Vanilla JS — confirmações de exclusão via confirm()
-📌 Observações
-O campo Imagem nos jogos aceita qualquer URL pública. Se deixado em branco, exibe um placeholder automático.
-Não é possível ter zero administradores: o sistema impede que um admin remova a si mesmo.
-Para ambientes de produção, recomenda-se mover as credenciais do banco para variáveis de ambiente ou um arquivo .env fora da raiz pública.
+Depois acesse:
+
+```
+http://localhost:8000
+```
+
+---
+
+# 📁 Estrutura de Arquivos
+
+```
+gameintel/
+├── index.php              # Login
+├── cadastro.php           # Cadastro de usuários
+├── home.php               # Loja (listagem de jogos)
+├── adicionar_jogo.php     # Adicionar jogo (admin)
+├── excluir_jogo.php       # Excluir jogo (admin)
+├── admin.php              # Painel administrativo
+├── auth_check.php         # Controle de sessão
+├── logout.php             # Encerrar sessão
+├── conexao.php            # Conexão PostgreSQL
+├── setup_admin.sql        # Script inicial
+├── css/
+│   └── style.css
+└── img/
+    └── logo.png
+```
+
+---
+
+# 🔐 Sistema de Autenticação
+
+* Senhas armazenadas com `password_hash()` (bcrypt)
+* Sessões PHP controlam login
+* Páginas protegidas redirecionam para login se não autenticado
+* Rotas admin bloqueadas para usuários sem permissão
+
+---
+
+# 👑 Painel Administrativo (`admin.php`)
+
+Apenas usuários com `is_admin = TRUE` podem acessar.
+
+## Funcionalidades:
+
+* Visualização de estatísticas (usuários, admins, jogos)
+* Promover usuários a admin
+* Rebaixar administradores (exceto o próprio usuário)
+* Excluir usuários
+* Excluir jogos diretamente
+
+---
+
+# 🌐 Rotas do Sistema
+
+| Rota                 | Acesso  | Descrição       |
+| -------------------- | ------- | --------------- |
+| `index.php`          | Público | Login           |
+| `cadastro.php`       | Público | Criar conta     |
+| `home.php`           | Logado  | Loja de jogos   |
+| `adicionar_jogo.php` | Admin   | Adicionar jogos |
+| `excluir_jogo.php`   | Admin   | Excluir jogos   |
+| `admin.php`          | Admin   | Painel admin    |
+| `logout.php`         | Logado  | Logout          |
+
+---
+
+# 🛠️ Tecnologias Utilizadas
+
+* PHP (Back-end)
+* PostgreSQL (Banco de dados)
+* HTML5 / CSS3 (Interface)
+* JavaScript (Interações simples)
+* SQL (Estrutura do banco)
+
+---
+
+# 📌 Observações
+
+* O campo **imagem** aceita URL externa.
+* Se vazio, pode ser usado um placeholder automático.
+* O sistema impede que um admin remova a própria conta.
+* Recomenda-se uso de `.env` em produção para segurança das credenciais.
+* Sempre valide permissões antes de executar ações administrativas.
+
+---
+
+# 🚀 Melhorias Futuras (Sugestões)
+
+* Upload de imagem (em vez de URL)
+* Carrinho de compras
+* Sistema de avaliações
+* Busca e filtros de jogos
+* API REST para integração
+* Dashboard com gráficos
+
+---
+
+Se quiser, posso te ajudar a transformar esse projeto em um **portfólio profissional estilo Steam/Origin real**, com layout moderno e sistema completo de loja.
