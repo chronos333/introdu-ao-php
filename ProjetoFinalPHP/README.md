@@ -1,6 +1,3 @@
-Aqui está seu **README completo e finalizado**, organizado, mais profissional e com algumas melhorias de clareza e consistência:
-
----
 
 # 🎮 GameIntel
 
@@ -195,5 +192,3 @@ Apenas usuários com `is_admin = TRUE` podem acessar.
 * Dashboard com gráficos
 
 ---
-
-Se quiser, posso te ajudar a transformar esse projeto em um **portfólio profissional estilo Steam/Origin real**, com layout moderno e sistema completo de loja.
