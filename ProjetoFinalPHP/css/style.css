@@ -531,13 +531,14 @@ footer{
 }
 
 .btn-logout-nav {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
     background: rgba(239,68,68,.15);
-    border: 1px solid rgba(239,68,68,.4);
-    color: #FCA5A5 !important;
-    padding: 8px 16px;
-    border-radius: 10px;
-    font-size: .9rem;
-    transition: .3s;
+    border: 1px solid rgba(239,68,68,.4); 
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
 }
 
 .btn-logout-nav:hover {
@@ -797,4 +798,29 @@ footer{
         padding: 10px 12px;
         font-size: .82rem;
     }
+}
+
+
+.btn-inicial {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #3B82F6;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.btn-inicial:hover {
+    background: #1D4ED8;
+}
+
+.usuario-nav {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #3B82F6;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
 }
