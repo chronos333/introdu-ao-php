@@ -23,9 +23,15 @@ $nome    = htmlspecialchars($_SESSION['usuario_nome']);
     <div class="navbar">
         <div class="logo">🎮 GameIntel</div>
         <div class="menu">
-            <a href="#">Loja</a>
-            <a href="#">Biblioteca</a>
-            <a href="#">Categorias</a>
+            <a href="#" class="btn btn-inicial">
+                🛒 Loja
+            </a>
+            <a href="#" class="btn btn-inicial">
+                📚 Biblioteca
+            </a>
+            <a href="carrinho.php?add=<?= $jogo['id'] ?>" class="btn btn-inicial">
+                🛒 Adicionar ao carrinho
+            </a>
             <?php if ($isAdmin): ?>
                 <a href="adicionar_jogo.php">➕ Adicionar Jogo</a>
                 <a href="admin.php" class="btn-admin-nav">⚙️ Painel Admin</a>
@@ -55,7 +61,7 @@ $nome    = htmlspecialchars($_SESSION['usuario_nome']);
                 <h3><?= htmlspecialchars($jogo['nome']) ?></h3>
                 <p class="genero"><?= htmlspecialchars($jogo['genero']) ?></p>
                 <div class="preco">R$ <?= number_format($jogo['preco'], 2, ',', '.') ?></div>
-                <button>Comprar</button>
+                <button>Adicionar ao Carrinho</button>
                 <?php if ($isAdmin): ?>
                     <a
                         href="excluir_jogos.php?id=<?= $jogo['id'] ?>"

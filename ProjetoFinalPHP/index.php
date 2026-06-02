@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Entrar</button>
 
         <div class="col-12">
-=======
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="./img/logo.png">
 </head>
@@ -77,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button class="btn btn-primary" type="submit">Entrar</button>
             </div> 
             <div class="col-12">
->>>>>>> 8e1bc3c7f4cf0b62edd2b895cfd81358095bda44
             <p>Não possui uma conta?
                 <a href="cadastro.php">Cadastre-se aqui</a>
             </p>
