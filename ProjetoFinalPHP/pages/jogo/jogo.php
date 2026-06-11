@@ -1,9 +1,9 @@
 <?php
-include "auth_check.php";
-include "conexao.php";
+include "../../includes/auth_check.php";
+include "../../includes/conexao.php";
 
 if (!isset($_GET['id'])) {
-    header("Location: home.php");
+    header("Location: ../home.php");
     exit();
 }
 
@@ -11,7 +11,7 @@ $id     = (int)$_GET['id'];
 $result = pg_query_params($conn, "SELECT * FROM jogos WHERE id = $1", [$id]);
 
 if (!$result || pg_num_rows($result) === 0) {
-    header("Location: home.php");
+    header("Location: ../home.php");
     exit();
 }
 
@@ -36,8 +36,8 @@ function renderEstrelas(float $nota): string {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= htmlspecialchars($jogo['nome']) ?> — GameIntel</title>
-<link rel="stylesheet" href="./css/style.css">
-<link rel="icon" type="image/x-icon" href="./img/logo.png">
+<link rel="stylesheet" href="../../public/css/style.css">
+<link rel="icon" type="image/x-icon" href="../../public/img/logo.png">
 </head>
 
 <body>
@@ -47,13 +47,13 @@ function renderEstrelas(float $nota): string {
     <div class="navbar">
         <div class="logo">🎮 GameIntel</div>
         <div class="menu">
-            <a href="home.php">← Voltar à Loja</a>
+            <a href="../home.php">← Voltar à Loja</a>
             <?php if ($isAdmin): ?>
                 <a href="adicionar_jogo.php">➕ Adicionar Jogo</a>
-                <a href="admin.php" class="btn-admin-nav">⚙️ Painel Admin</a>
+                <a href="../../admin/admin.php" class="btn-admin-nav">⚙️ Painel Admin</a>
             <?php endif; ?>
             <span class="usuario-nav">👤 <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
-            <a href="logout.php" class="btn-logout-nav">Sair</a>
+            <a href="../logout.php" class="btn-logout-nav">Sair</a>
         </div>
     </div>
 
@@ -82,7 +82,7 @@ function renderEstrelas(float $nota): string {
                 <!-- Preço e compra -->
                 <div class="jogo-compra">
                     <div class="jogo-preco">R$ <?= number_format($jogo['preco'], 2, ',', '.') ?></div>
-                    <button class="btn-comprar">🛒 Comprar Agora</button>
+                    <button class="btn-comprar" onclick="adicionarCarrinho(<?= $jogo['id'] ?>, '<?= htmlspecialchars($jogo['nome'], ENT_QUOTES) ?>', <?= $jogo['preco'] ?>)">🛒 Comprar Agora</button>
                 </div>
 
                 <?php if ($isAdmin): ?>
@@ -137,5 +137,21 @@ function renderEstrelas(float $nota): string {
 
     <footer>© 2026 GameIntel - Todos os direitos reservados.</footer>
 </div>
+
+<script>
+function adicionarCarrinho(id, nome, preco) {
+    let carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    const existe = carrinho.find(i => i.id === id);
+    if (existe) {
+        existe.qtd++;
+    } else {
+        carrinho.push({ id, nome, preco, qtd: 1 });
+    }
+
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    alert('🛒 ' + nome + ' adicionado ao carrinho!');
+}
+</script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
-include "conexao.php";
+include "../../includes/conexao.php";
 
 if (!isset($_GET['id'])) {
-    header("Location: home.php");
+    header("Location: ../home.php");
     exit();
 }
 
@@ -16,6 +16,6 @@ if (!$result) {
     exit();
 }
 
-header("Location: home.php");
+header("Location: ../home.php");
 exit();
 ?>

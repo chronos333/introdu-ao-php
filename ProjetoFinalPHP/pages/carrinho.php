@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "auth_check.php";
-include "conexao.php";
+include "../includes/auth_check.php";
+include "../includes/conexao.php";
 
 $isAdmin    = !empty($_SESSION['is_admin']);
 $nome       = htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário');
@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['finalizar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho — GameIntel</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../public/img/logo.png">
 
 </head>
 <body>

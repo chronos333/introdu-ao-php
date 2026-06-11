@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "auth_check.php";
-include "conexao.php";
+include "../includes/auth_check.php";
+include "../includes/conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['editar'])) {
     $id         = (int) $_POST['id'];
@@ -37,8 +37,8 @@ $nome    = htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameIntel</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../public/img/logo.png">
 </head>
 <body>
 <div class="home">
@@ -51,8 +51,8 @@ $nome    = htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário');
                 🛒 Carrinho <span id="carrinho-badge" style="display:none"></span>
             </a>
             <?php if ($isAdmin): ?>
-                <a href="adicionar_jogo.php">➕ Adicionar Jogo</a>
-                <a href="admin.php">⚙️ Painel Admin</a>
+                <a href="jogo/adicionar_jogo.php">➕ Adicionar Jogo</a>
+                <a href="../admin/admin.php">⚙️ Painel Admin</a>
             <?php endif; ?>
             <span class="usuario-nav">👤 <?= $nome ?></span>
             <a href="logout.php">Sair</a>
@@ -93,7 +93,7 @@ $nome    = htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário');
                     R$ <?= number_format((float)$jogo['preco'], 2, ',', '.') ?>
                 </div>
                 <div class="card-acoes">
-                    <a href="jogo.php?id=<?= $jogo['id'] ?>" class="btn-ver-mais">Ver mais</a>
+                    <a href="jogo/jogo.php?id=<?= $jogo['id'] ?>" class="btn-ver-mais">Ver mais</a>
                     <button class="btn-carrinho"
                         onclick="adicionarCarrinho(
                             <?= $jogo['id'] ?>,
@@ -114,7 +114,7 @@ $nome    = htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário');
                            ); return false;">
                             ✏️ Editar
                         </a>
-                        <a href="excluir_jogos.php?id=<?= $jogo['id'] ?>"
+                        <a href="jogo/excluir_jogos.php?id=<?= $jogo['id'] ?>"
                            class="btn-excluir"
                            onclick="return confirm('Excluir <?= htmlspecialchars($jogo['nome'], ENT_QUOTES) ?>?')">
                             🗑 Excluir
@@ -200,28 +200,28 @@ function adicionarCarrinho(id, nome, preco) {
     }
 
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    atualizarContador();
-    mostrarToast(`"${nome}" adicionado ao carrinho!`);
+    atualizarBadgeCarrinho();
+    toast('🛒 ' + nome + ' adicionado!');
 }
 
-function atualizarContador() {
-    let carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
-    const total  = carrinho.reduce((acc, i) => acc + i.qtd, 0);
-    const badge  = document.getElementById('carrinho-badge');
-    if (badge) {
+function atualizarBadgeCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+    const total = carrinho.reduce((s, i) => s + i.qtd, 0);
+    const badge = document.getElementById('carrinho-badge');
+    if (total > 0) {
         badge.textContent = total;
-        badge.style.display = total > 0 ? 'inline-flex' : 'none';
+        badge.style.display = 'inline';
+    } else {
+        badge.style.display = 'none';
     }
 }
 
-function mostrarToast(msg) {
+function toast(msg) {
     const toast = document.getElementById('toast');
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
+    toast.innerHTML = msg;
+    toast.className = 'toast show';
+    setTimeout(() => toast.className = '', 3000);
 }
-
-atualizarContador();
 
 /* FILTRO */
 function filtrar(genero, btn) {
@@ -230,12 +230,14 @@ function filtrar(genero, btn) {
 
     document.querySelectorAll('.card').forEach(card => {
         if (genero === 'todos' || card.dataset.genero === genero) {
-            card.style.display = 'flex';
+            card.style.display = 'block';
         } else {
             card.style.display = 'none';
         }
     });
 }
+
+atualizarBadgeCarrinho();
 </script>
 </body>
 </html>

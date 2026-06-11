@@ -1,20 +1,20 @@
 <?php
-include "auth_check.php";
+include "../../includes/auth_check.php";
 requireAdmin();
-include "conexao.php";
+include "../../includes/conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome   = trim($_POST["nome"]);
-    $preco  = $_POST["preco"];
-    $genero = trim($_POST["genero"]);
-    $descricao = trim($_POST["descricao"]);
+    $nome       = trim($_POST["nome"]);
+    $preco      = $_POST["preco"];
+    $genero     = trim($_POST["genero"]);
+    $descricao  = trim($_POST["descricao"]);
     $requisitos = trim($_POST["requisitos"]);
-    $imagem = trim($_POST["imagem"]);
+    $imagem     = trim($_POST["imagem"]);
 
-    $sql = "INSERT INTO jogos (nome, preco, genero, descricao, imagem) VALUES ($1, $2, $3, $4, $5)";
-    pg_query_params($conn, $sql, [$nome, $preco, $genero, $descricao, $imagem]);
+    $sql = "INSERT INTO jogos (nome, preco, genero, descricao, requisitos, imagem) VALUES ($1, $2, $3, $4, $5, $6)";
+    pg_query_params($conn, $sql, [$nome, $preco, $genero, $descricao, $requisitos, $imagem]);
 
-    header("Location: home.php");
+    header("Location: ../home.php");
     exit();
 }
 ?>
@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
 <title>Adicionar Jogo — GameIntel</title>
-<link rel="stylesheet" href="./css/style.css">
-<link rel="icon" type="image/x-icon" href="./img/logo.png">
+<link rel="stylesheet" href="../../public/css/style.css">
+<link rel="icon" type="image/x-icon" href="../../public/img/logo.png">
 
 </head>
 
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <textarea name="descricao" rows="4" required placeholder="Descreva o jogo..."></textarea>
 
     <label>Requisitos</label>
-    <textarea name="Requisitos" rows="4" required placeholder="Requistos minimos"></textarea>
+    <textarea name="requisitos" rows="4" required placeholder="Requisitos mínimos"></textarea>
 
     <label>Imagem (URL)</label>
     <input type="text" name="imagem" placeholder="https://...">
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button type="submit">Adicionar Jogo</button>
 
     <div class="col-12">
-        <p><a href="home.php">← Voltar para a loja</a></p>
+        <p><a href="../home.php">← Voltar para a loja</a></p>
     </div>
 </form>
 

@@ -1,7 +1,7 @@
 <?php
-include "auth_check.php";
+include "../includes/auth_check.php";
 requireAdmin();
-include "conexao.php";
+include "../includes/conexao.php";
 
 $msg = "";
 
@@ -57,8 +57,8 @@ pg_result_seek($usuarios, 0);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Admin — GameIntel</title>
-<link rel="stylesheet" href="./css/style.css">
-<link rel="icon" type="image/x-icon" href="./img/logo.png">
+<link rel="stylesheet" href="../public/css/style.css">
+<link rel="icon" type="image/x-icon" href="../public/img/logo.png">
 </head>
 <body>
 <div class="home">
@@ -67,9 +67,9 @@ pg_result_seek($usuarios, 0);
     <div class="navbar">
         <div class="logo">🎮 GameIntel</div>
         <div class="menu">
-            <a href="home.php">← Voltar à Loja</a>
+            <a href="../pages/home.php">← Voltar à Loja</a>
             <span class="usuario-nav">⚙️ Admin: <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
-            <a href="logout.php" class="btn-logout-nav">Sair</a>
+            <a href="../pages/logout.php" class="btn-logout-nav">Sair</a>
         </div>
     </div>
 
@@ -100,7 +100,7 @@ pg_result_seek($usuarios, 0);
             <span class="stat-label">Jogos</span>
         </div>
         <div class="stat-card stat-action">
-            <a href="adicionar_jogo.php">➕ Novo Jogo</a>
+            <a href="../pages/jogo/adicionar_jogo.php">➕ Novo Jogo</a>
         </div>
     </div>
 
@@ -183,7 +183,7 @@ pg_result_seek($usuarios, 0);
                         <td>R$ <?= number_format($j['preco'], 2, ',', '.') ?></td>
                         <td>
                             <a
-                                href="excluir_jogos.php?id=<?= $j['id'] ?>"
+                                href="../pages/jogo/excluir_jogos.php?id=<?= $j['id'] ?>"
                                 onclick="return confirm('Excluir <?= htmlspecialchars($j['nome']) ?>?');"
                                 class="btn-excluir"
                             >🗑 Excluir</a>
