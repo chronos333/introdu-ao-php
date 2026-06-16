@@ -1,8 +1,5 @@
 # 🎮 GameIntel
 
-**Documentação de Especificação de Requisitos de Software (SRS)**
-Documento baseado na **ISO/IEC/IEEE 29148:2018**
-
 **Projeto:** GameIntel
 **Versão:** 1.0.0
 **Data:** 2026-06-16
