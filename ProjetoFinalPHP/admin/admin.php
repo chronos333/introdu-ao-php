@@ -100,7 +100,7 @@ pg_result_seek($usuarios, 0);
             <span class="stat-label">Jogos</span>
         </div>
         <div class="stat-card stat-action">
-            <a href="../pages/jogo/adicionar_jogo.php">➕ Novo Jogo</a>
+            <a href="../pages/jogo/adicionar_jogo.php" class="btn-novo-jogo">➕ Novo Jogo</a>
         </div>
     </div>
 

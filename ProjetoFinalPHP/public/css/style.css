@@ -1176,3 +1176,359 @@ h1.carrinho-titulo {
     color: white;
     margin-bottom: 30px;
 }
+
+/* ========================= */
+/* FIX CARRINHO h1            */
+/* ========================= */
+
+h1.carrinho-titulo {
+    font-size: 2rem !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    background: linear-gradient(90deg, #60A5FA, #3B82F6) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: none !important;
+    margin-bottom: 30px;
+}
+
+/* ========================= */
+/* FIX ADMIN TABLE            */
+/* ========================= */
+
+.admin-table td {
+    vertical-align: middle;
+}
+
+.admin-table td.acoes {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 10px 20px;
+}
+
+.admin-table form {
+    width: auto !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    display: inline-block !important;
+}
+
+.admin-table form:hover {
+    transform: none !important;
+}
+
+.btn-promover,
+.btn-rebaixar {
+    width: auto !important;
+    padding: 7px 12px !important;
+    font-size: .8rem !important;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: none !important;
+    white-space: nowrap;
+}
+
+.btn-promover {
+    background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.btn-rebaixar {
+    background: rgba(245,158,11,.15) !important;
+    border: 1px solid rgba(245,158,11,.4) !important;
+    color: #fbbf24 !important;
+}
+
+.btn-rebaixar:hover {
+    background: #d97706 !important;
+    color: white !important;
+}
+
+.admin-table .btn-excluir {
+    width: auto !important;
+    flex: none !important;
+    padding: 7px 12px !important;
+    font-size: .8rem !important;
+    white-space: nowrap;
+}
+
+/* FIX CARRINHO VAZIO CENTRALIZADO */
+.carrinho-vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+    color: #94a3b8;
+    grid-column: 1 / -1;
+    gap: 16px;
+}
+
+.carrinho-vazio p {
+    font-size: 1.1rem;
+}
+
+.carrinho-vazio a {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: .2s;
+    box-shadow: 0 0 16px rgba(59,130,246,.3);
+}
+
+.carrinho-vazio a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(59,130,246,.5);
+}
+
+/* FIX ADMIN SECTION TITLE */
+.admin-section-title {
+    font-size: 1.3rem !important;
+    color: #cbd5e1 !important;
+    margin-bottom: 16px;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #cbd5e1 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    text-shadow: none !important;
+    font-weight: 700;
+}
+
+/* ========================= */
+/* CARRINHO                   */
+/* ========================= */
+
+h1.carrinho-titulo {
+    font-size: 2rem !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    background: linear-gradient(90deg, #60A5FA, #3B82F6) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: none !important;
+    margin-bottom: 30px;
+}
+
+.carrinho-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+    align-items: start;
+}
+
+.carrinho-vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    text-align: center; 
+    margin-top: 40px;
+    margin-left: 30vh;
+    color: #94a3b8;
+    grid-column: 1 / -1; /* ocupa as duas colunas */
+    gap: 20px;
+}
+
+.carrinho-vazio p {
+    font-size: 1.2rem;
+}
+
+.carrinho-vazio .btn-ver-mais {
+    width: auto;
+    flex: none;
+    padding: 12px 28px;
+}
+
+.carrinho-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.carrinho-info { flex: 1; }
+.carrinho-info h3 { color: #f1f5f9; margin-bottom: 6px; }
+.carrinho-info p  { color: #94a3b8; font-size: .9rem; }
+
+.carrinho-acoes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.carrinho-acoes button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: rgba(59,130,246,.1);
+    border: 1px solid rgba(59,130,246,.3);
+    color: #60a5fa;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: none;
+}
+
+.carrinho-acoes button:hover { background: rgba(59,130,246,.25); transform: none; }
+
+.btn-remover {
+    background: rgba(239,68,68,.1) !important;
+    border-color: rgba(239,68,68,.3) !important;
+    color: #f87171 !important;
+    box-shadow: none !important;
+}
+
+.btn-remover:hover { background: #dc2626 !important; color: white !important; }
+
+.carrinho-subtotal {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #60a5fa;
+    min-width: 100px;
+    text-align: right;
+}
+
+.carrinho-resumo {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 24px;
+    position: sticky;
+    top: 20px;
+}
+
+.carrinho-resumo h2 {
+    color: #f1f5f9;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    background: none;
+    -webkit-text-fill-color: #f1f5f9;
+    text-transform: none;
+    letter-spacing: 0;
+    text-shadow: none;
+}
+
+.carrinho-resumo form {
+    width: auto !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border-radius: 0 !important;
+}
+
+.carrinho-resumo form:hover { transform: none !important; }
+
+.resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.resumo-linha strong { color: #60a5fa; font-size: 1.3rem; }
+
+.btn-finalizar {
+    width: 100% !important;
+    padding: 14px !important;
+    background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    color: white !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: 0 0 16px rgba(59,130,246,.3) !important;
+    margin-bottom: 10px;
+}
+
+.btn-finalizar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(59,130,246,.5) !important;
+}
+
+.btn-limpar {
+    width: 100%;
+    padding: 12px;
+    background: rgba(239,68,68,.1);
+    border: 1px solid rgba(239,68,68,.3);
+    border-radius: 12px;
+    color: #f87171;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: none;
+}
+
+.btn-limpar:hover { background: #dc2626; color: white; }
+
+.alerta-sucesso {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    padding: 16px 20px;
+    background: rgba(34,197,94,.1);
+    border: 1px solid rgba(74,222,128,.3);
+    border-radius: 12px;
+    color: #4ade80;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .carrinho-container { grid-template-columns: 1fr; }
+    .carrinho-card { flex-wrap: wrap; }
+}
+.stat-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-novo-jogo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: .2s;
+    box-shadow: 0 0 16px rgba(59,130,246,.3);
+    -webkit-text-fill-color: white;
+}
+
+.btn-novo-jogo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(59,130,246,.5);
+    color: white !important;
+}
