@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['finalizar'])) {
         </div>
     </div>
 
-    <h1>🛒 Meu Carrinho</h1>
+    <h1 class="carrinho-titulo">🛒 Meu Carrinho</h1>
 
     <?php if (isset($_GET['sucesso'])): ?>
         <div class="alerta-sucesso">✅ Compra finalizada! Obrigado, <?= $nome ?>!</div>

@@ -37,7 +37,7 @@ $nome    = htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameIntel</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <link rel="icon" type="image/x-icon" href="../public/img/logo.png">
 </head>
 <body>

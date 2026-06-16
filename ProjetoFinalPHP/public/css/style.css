@@ -1162,3 +1162,17 @@ textarea:focus {
     border-radius: 16px;
     border: 1px solid #334155;
 }
+/* ========================= */
+/* CARRINHO                   */
+/* ========================= */
+
+.carrinho-page h1,
+h1.carrinho-titulo {
+    font-size: 2rem;
+    text-transform: none;
+    letter-spacing: 0;
+    background: none;
+    -webkit-text-fill-color: white;
+    color: white;
+    margin-bottom: 30px;
+}
