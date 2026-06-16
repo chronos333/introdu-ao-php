@@ -11,8 +11,11 @@
 <h1>Criar Conta</h1>
 <form method="POST">
 
-    <label>Usuário:</label>
+    <label>Nome Usuário:</label>
     <input type="text" name="nome" required>
+
+    <label>Email:</label>
+    <input type="text" name="email" required>
 
     <label>Senha:</label>
     <input type="password" name="senha" required>
@@ -34,6 +37,7 @@ include "../includes/conexao.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome      = trim($_POST['nome']);
     $senha     = $_POST['senha'];
+    $email     = $_POST['email'];
     $confirmar = $_POST['confirmar_senha'];
 
     if ($senha !== $confirmar) {
