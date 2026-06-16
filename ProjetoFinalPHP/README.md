@@ -1,415 +1,424 @@
-# 🎮 GameIntel - Documentação Completa
+# 🎮 GameIntel
 
-GameIntel é uma loja virtual de jogos inspirada em plataformas como a Steam, desenvolvida em PHP com banco de dados PostgreSQL. O projeto oferece uma experiência completa de e-commerce com autenticação de usuários, sistema de carrinho de compras, gerenciamento de jogos e painel administrativo.
+**Documentação de Especificação de Requisitos de Software (SRS)**
+Documento baseado na **ISO/IEC/IEEE 29148:2018**
 
----
-
-## 🚀 Funcionalidades
-
-### Autenticação e Usuários
-* ✅ Sistema de login seguro com sessions
-* ✅ Cadastro de novos usuários com hash de senha (password_hash)
-* ✅ Autenticação de acesso com verificação de permissões
-* ✅ Sistema de logout
-* ✅ Painel administrativo com controle de permissões
-
-### Catálogo de Jogos
-* ✅ Página inicial com listagem de jogos
-* ✅ Exibição de jogos em cards com imagem, nome, gênero e preço
-* ✅ Página individual de cada jogo com descrição e requisitos do sistema
-* ✅ Sistema de avaliação com estrelas (0-5)
-* ✅ Filtros por gênero (Ação, Esporte, Exploração, FPS, LEGO, Roguelike, RPG, Simulator, Terror)
-* ✅ Múltiplas categorias de jogos
-
-### Carrinho de Compras
-* ✅ Carrinho persistente usando localStorage
-* ✅ Adicionar e remover itens do carrinho
-* ✅ Cálculo automático de total
-* ✅ Sistema de checkout com registro de pedidos no banco de dados
-* ✅ Visualização de histórico de compras
-
-### Painel Administrativo
-* ✅ Dashboard com estatísticas (total de usuários, admins e jogos)
-* ✅ Gerenciamento de usuários (promover/rebaixar admin, excluir usuário)
-* ✅ Adicionar novos jogos ao catálogo
-* ✅ Editar informações de jogos (nome, preço, gênero, descrição, requisitos)
-* ✅ Excluir jogos do catálogo
-* ✅ Listagem completa de usuários e jogos
-
-### Interface
-* ✅ Design responsivo e moderno
-* ✅ Navbar com logo, carrinho e informações do usuário
-* ✅ Interface amigável com feedback visual (mensagens de sucesso/erro)
-* ✅ CSS moderno com efeitos visuais
+**Projeto:** GameIntel
+**Versão:** 1.0.0
+**Data:** 2026-06-16
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+# 1. Introdução
 
-* **Backend**: PHP 8.5.6
-* **Banco de Dados**: PostgreSQL
-* **Frontend**: HTML5, CSS3, JavaScript (localStorage)
-* **Segurança**: password_hash, prepared statements (pg_query_params)
-* **Sessions**: PHP Sessions para autenticação
+## 1.1 Propósito
+
+Este documento descreve o sistema **GameIntel**, uma plataforma de comércio eletrônico para venda de jogos digitais inspirada em marketplaces como Steam.
+
+Objetivos:
+
+* Definir os requisitos do sistema
+* Padronizar o entendimento entre desenvolvedores e usuários
+* Servir como base para implementação, manutenção e testes
 
 ---
 
-## 📂 Estrutura do Projeto
+## 1.2 Escopo
 
+O sistema permite:
+
+* Cadastro de usuários
+* Autenticação de usuários
+* Visualização de catálogo de jogos
+* Consulta de detalhes dos jogos
+* Adição de produtos ao carrinho
+* Finalização de compras
+* Histórico de pedidos
+* Administração de usuários
+* Administração de jogos
+
+Tecnologias utilizadas:
+
+* PHP 8+
+* PostgreSQL
+* HTML5
+* CSS3
+* JavaScript
+* LocalStorage
+
+---
+
+## 1.3 Definições
+
+| Termo         | Definição                              |
+| ------------- | -------------------------------------- |
+| Usuário       | Cliente cadastrado na plataforma       |
+| Administrador | Usuário com permissões avançadas       |
+| Jogo          | Produto comercializado no sistema      |
+| Pedido        | Registro de compra efetuada            |
+| Carrinho      | Lista temporária de jogos selecionados |
+
+### Acrônimos
+
+* RF — Requisito Funcional
+* RNF — Requisito Não Funcional
+* RN — Regra de Negócio
+
+---
+
+# 2. Descrição Geral
+
+## 2.1 Perspectiva do Sistema
+
+O GameIntel funciona como uma loja virtual de jogos digitais, permitindo gerenciamento completo do catálogo, usuários e compras.
+
+---
+
+## 2.2 Funções do Sistema
+
+O sistema deve:
+
+* Cadastrar usuários
+* Autenticar usuários
+* Exibir catálogo de jogos
+* Exibir detalhes dos jogos
+* Permitir compras
+* Registrar pedidos
+* Gerenciar usuários
+* Gerenciar jogos
+
+---
+
+## 2.3 Classes de Usuários
+
+| Perfil        | Descrição                 |
+| ------------- | ------------------------- |
+| Usuário       | Compra e visualiza jogos  |
+| Administrador | Gerencia jogos e usuários |
+
+---
+
+## 2.4 Ambiente Operacional
+
+* Navegador Web moderno
+* PHP 8+
+* PostgreSQL 13+
+* Apache ou Servidor PHP embutido
+
+---
+
+## 2.5 Restrições
+
+* Sem integração com gateways de pagamento
+* Sem envio de e-mails
+* Sem aplicativo mobile
+* Sem upload de arquivos
+
+---
+
+# 3. Requisitos Funcionais
+
+## RF-001 — Cadastro de Usuário
+
+Descrição: Permitir cadastro de novos usuários.
+
+Critérios:
+
+* Nome obrigatório
+* Senha obrigatória
+* Nome único
+
+---
+
+## RF-002 — Login
+
+Descrição: Permitir autenticação.
+
+Critérios:
+
+* Validar credenciais
+* Criar sessão
+* Redirecionar usuário autenticado
+
+---
+
+## RF-003 — Logout
+
+Descrição: Encerrar sessão do usuário.
+
+---
+
+## RF-004 — Catálogo de Jogos
+
+Descrição: Exibir jogos disponíveis.
+
+Critérios:
+
+* Mostrar imagem
+* Mostrar preço
+* Mostrar gênero
+* Mostrar avaliação
+
+---
+
+## RF-005 — Detalhes do Jogo
+
+Descrição: Exibir informações completas do jogo.
+
+Critérios:
+
+* Descrição
+* Requisitos do sistema
+* Avaliação
+* Preço
+
+---
+
+## RF-006 — Carrinho de Compras
+
+Descrição: Permitir gerenciamento do carrinho.
+
+Critérios:
+
+* Adicionar item
+* Remover item
+* Alterar quantidade
+* Calcular total
+
+---
+
+## RF-007 — Finalização de Compra
+
+Descrição: Registrar pedidos.
+
+Critérios:
+
+* Salvar pedido no banco
+* Registrar data da compra
+* Limpar carrinho após compra
+
+---
+
+## RF-008 — Histórico de Compras
+
+Descrição: Exibir pedidos realizados.
+
+---
+
+## RF-009 — Gerenciamento de Jogos
+
+Descrição: Administrador pode:
+
+* Adicionar jogos
+* Editar jogos
+* Excluir jogos
+
+---
+
+## RF-010 — Gerenciamento de Usuários
+
+Descrição: Administrador pode:
+
+* Listar usuários
+* Promover usuários para administrador
+* Rebaixar administradores
+* Excluir usuários
+
+---
+
+## RF-011 — Dashboard Administrativo
+
+Descrição: Exibir estatísticas do sistema.
+
+Critérios:
+
+* Total de usuários
+* Total de administradores
+* Total de jogos
+
+---
+
+# 4. Requisitos Não Funcionais
+
+## RNF-001 — Segurança
+
+As senhas devem ser armazenadas utilizando:
+
+```php
+password_hash()
 ```
+
+---
+
+## RNF-002 — Proteção Contra SQL Injection
+
+Utilizar:
+
+```php
+pg_query_params()
+```
+
+---
+
+## RNF-003 — Responsividade
+
+Interface compatível com desktop, tablet e smartphone.
+
+---
+
+## RNF-004 — Desempenho
+
+Tempo médio de carregamento inferior a 2 segundos em ambiente local.
+
+---
+
+## RNF-005 — Banco de Dados
+
+Persistência realizada em PostgreSQL.
+
+---
+
+# 5. Regras de Negócio
+
+| Código | Regra                                                              |
+| ------ | ------------------------------------------------------------------ |
+| RN-001 | Apenas usuários autenticados podem acessar a loja                  |
+| RN-002 | Apenas administradores acessam o painel administrativo             |
+| RN-003 | Usuários não podem alterar privilégios                             |
+| RN-004 | Todo pedido deve estar associado a um usuário                      |
+| RN-005 | Todo pedido deve estar associado a um jogo                         |
+| RN-006 | O carrinho é mantido no navegador via LocalStorage                 |
+| RN-007 | Não é permitido excluir a própria conta administrativa pelo painel |
+
+---
+
+# 6. Banco de Dados
+
+## Tabelas
+
+### usuarios
+
+* id
+* nome
+* senha
+* is_admin
+
+### jogos
+
+* id
+* nome
+* preco
+* genero
+* descricao
+* requisitos
+* imagem
+* avaliacao
+
+### pedidos
+
+* id
+* usuario_id
+* jogo_id
+* quantidade
+* preco_unitario
+* data_pedido
+
+---
+
+## Importação
+
+```bash
+createdb -U postgres gameintel
+
+psql -U postgres -d gameintel -f database/backup.sql
+```
+
+---
+
+# 7. Estrutura do Projeto
+
+```text
 ProjetoFinalPHP/
-├── index.php                     # Redirecionador para public/index.php
-├── .gitignore                    # Arquivos a ignorar no Git
-├── README.md                     # Documentação completa (este arquivo)
-│
 ├── admin/
-│   └── admin.php                 # Painel administrativo
 ├── database/
-│   └── backup.sql               # Backup do banco de dados
 ├── includes/
-│   ├── auth_check.php           # Verificação de autenticação
-│   └── conexao.php              # Configuração de conexão com BD
 ├── pages/
-│   ├── home.php                 # Página principal (loja)
-│   ├── carrinho.php             # Carrinho de compras
-│   ├── logout.php               # Logout
-│   └── jogo/
-│       ├── jogo.php             # Página de detalhes do jogo
-│       ├── adicionar_jogo.php   # Adicionar novo jogo (admin)
-│       └── excluir_jogos.php    # Excluir jogo (admin)
-└── public/
-    ├── index.php                # Página de login (entrada)
-    ├── cadastro.php             # Página de cadastro
-    ├── .htaccess                # Configurações de segurança
-    ├── css/
-    │   └── style.css            # Estilos globais
-    └── img/
-        └── logo.png             # Logo da aplicação
+├── public/
+├── README.md
+└── index.php
 ```
 
 ---
 
-## 🏁 Como Usar
+# 8. Como Executar
 
-### 1️⃣ Iniciar o Servidor
+Clone o projeto:
+
+```bash
+git clone <repositorio>
+```
+
+Acesse a pasta:
+
+```bash
+cd ProjetoFinalPHP
+```
+
+Inicie o servidor:
 
 ```bash
 php -S localhost:8000
 ```
 
-### 2️⃣ Acessar a Aplicação
+Abra:
 
-Abra no navegador:
-```
-http://localhost:8000/
-```
-
-O redirecionador automático leva você para:
-```
-http://localhost:8000/public/index.php
-```
-
-### 3️⃣ Primeiro Acesso
-
-- **Login**: Use credenciais existentes no banco (ou crie uma conta)
-- **Cadastro**: Clique em "Cadastre-se aqui" para novo usuário
-- **Admin**: Usuários admin têm acesso a "Painel Admin"
-
----
-
-## 🗄️ Banco de Dados
-
-### Estrutura PostgreSQL
-
-O projeto utiliza as seguintes tabelas:
-
-**`usuarios`** - Dados de usuários
-- `id` (serial, PK)
-- `nome` (varchar, UNIQUE)
-- `senha` (varchar - hash)
-- `is_admin` (boolean)
-
-**`jogos`** - Catálogo de jogos
-- `id` (serial, PK)
-- `nome` (varchar)
-- `preco` (numeric)
-- `genero` (varchar)
-- `descricao` (text)
-- `requisitos` (text)
-- `imagem` (varchar)
-- `avaliacao` (numeric)
-
-**`pedidos`** - Histórico de compras
-- `id` (serial, PK)
-- `usuario_id` (int, FK)
-- `jogo_id` (int, FK)
-- `quantidade` (int)
-- `preco_unitario` (numeric)
-- `data_pedido` (timestamp)
-
-**Credenciais padrão** (em `backup.sql`):
-- Host: `localhost:5432`
-- Database: `gameintel`
-- User: `postgres`
-- Password: `postgres`
-
-⚠️ **IMPORTANTE**: Alterar credenciais em produção!
-
----
-
-## 🔐 Segurança
-
-### Implementações de Segurança
-
-- **Autenticação**: Sessions PHP com validação em `includes/auth_check.php`
-- **Hash de Senhas**: `password_hash()` com algoritmo padrão (PASSWORD_DEFAULT)
-- **SQL Injection**: `pg_query_params()` com prepared statements
-- **XSS Protection**: `htmlspecialchars()` em todas as saídas
-- **Directory Access**: `.htaccess` bloqueia acesso direto a arquivos PHP em `public/`
-- **File Permissions**: Arquivos separados por responsabilidade
-
-### Fluxo de Autorização
-
-1. **Login** (`public/index.php`)
-   - Valida credenciais
-   - Cria sessão com `usuario_id`, `usuario_nome`, `is_admin`
-
-2. **Páginas Protegidas**
-   - Incluem `includes/auth_check.php`
-   - Redirecionam para login se não autenticado
-
-3. **Painel Admin**
-   - Incluem `requireAdmin()` de `auth_check.php`
-   - Redirecionam para home se não admin
-
----
-
-## 🌐 Mapa de Navegação Detalhado
-
-### 🏠 Ponto de Entrada
-
-**`index.php`** (raiz)
-- Redireciona para: `public/index.php`
-
-**`public/index.php`** - Login
-- Campo: usuário e senha
-- Botão: "Entrar" → POST → valida e redireciona para `pages/home.php`
-- Link: "Cadastre-se aqui" → `public/cadastro.php`
-
-**`public/cadastro.php`** - Cadastro
-- Campos: nome, senha, confirmar senha
-- Botão: "Cadastrar" → POST → insere no BD e redireciona para `index.php`
-- Link: "Entre aqui" → `index.php`
-
----
-
-### 🛍️ Páginas Principais
-
-**`pages/home.php`** - Loja de Jogos
-- Include: `../includes/auth_check.php`, `../includes/conexao.php`
-- Conteúdo:
-  - Navbar com:
-    - Logo "🎮 GameIntel"
-    - 🛒 Carrinho → `carrinho.php`
-    - ➕ Adicionar Jogo (admin) → `jogo/adicionar_jogo.php`
-    - ⚙️ Painel Admin (admin) → `../admin/admin.php`
-    - 👤 Nome do usuário
-    - Sair → `logout.php`
-  - Banner com mensagem de boas-vindas
-  - Filtro por gênero
-  - Grid de jogos com:
-    - Imagem
-    - Nome
-    - Gênero
-    - Preço
-    - Botão "Ver mais" → `jogo/jogo.php?id={id}`
-    - Botão "Adicionar ao carrinho" → localStorage
-    - (Admin) Botões: Editar, Excluir
-
-**`pages/carrinho.php`** - Carrinho de Compras
-- Include: `../includes/auth_check.php`, `../includes/conexao.php`
-- Conteúdo:
-  - Navbar com:
-    - ← Voltar à Loja → `home.php`
-    - 👤 Nome do usuário
-    - Sair → `logout.php`
-  - Lista de itens no carrinho (localStorage):
-    - Imagem/Nome do jogo
-    - Preço unitário × Quantidade
-    - Botões: −, quantidade, +, 🗑 remover
-  - Resumo:
-    - Total
-    - Botão "✅ Finalizar Compra" → POST → insere em pedidos → limpa localStorage
-    - Botão "🗑 Limpar Carrinho"
-
-**`pages/logout.php`** - Logout
-- Destroi sessão
-- Redireciona para: `../public/index.php`
-
----
-
-### 🎯 Páginas de Jogos (em `pages/jogo/`)
-
-**`pages/jogo/jogo.php`** - Detalhes do Jogo
-- URL: `?id={id}`
-- Include: `../../includes/auth_check.php`, `../../includes/conexao.php`
-- Conteúdo:
-  - Navbar:
-    - ← Voltar à Loja → `../home.php`
-    - ➕ Adicionar Jogo (admin) → `adicionar_jogo.php`
-    - ⚙️ Painel Admin (admin) → `../../admin/admin.php`
-    - 👤 Nome do usuário
-    - Sair → `../logout.php`
-  - Hero section:
-    - Cover do jogo
-    - Gênero
-    - Título
-    - Avaliação com estrelas
-    - Preço
-    - Botão "🛒 Comprar Agora" → localStorage
-    - (Admin) Botão "🗑 Excluir Jogo" → `excluir_jogos.php?id={id}`
-  - Descrição completa
-  - Requisitos do sistema
-
-**`pages/jogo/adicionar_jogo.php`** - Adicionar Jogo (Admin Only)
-- Include: `../../includes/auth_check.php`, `requireAdmin()`, `../../includes/conexao.php`
-- Formulário POST:
-  - Nome do Jogo
-  - Preço
-  - Gênero
-  - Descrição
-  - Requisitos
-  - Imagem (URL)
-  - Botão: "Adicionar Jogo" → insere em BD → redireciona para `../home.php`
-  - Link: "← Voltar para a loja" → `../home.php`
-
-**`pages/jogo/excluir_jogos.php`** - Excluir Jogo (Admin Only)
-- URL: `?id={id}`
-- Include: `../../includes/conexao.php`
-- Ação: DELETE jogo onde id = {id}
-- Redireciona: `../home.php`
-
----
-
-### ⚙️ Painel Administrativo
-
-**`admin/admin.php`** - Dashboard Admin
-- Include: `../includes/auth_check.php`, `requireAdmin()`, `../includes/conexao.php`
-- Navbar:
-  - ← Voltar à Loja → `../pages/home.php`
-  - ⚙️ Admin: {nome}
-  - Sair → `../pages/logout.php`
-- Cards de Estatísticas:
-  - Total de Usuários
-  - Total de Admins
-  - Total de Jogos
-  - Botão: "➕ Novo Jogo" → `../pages/jogo/adicionar_jogo.php`
-- Tabela de Usuários:
-  - ID, Nome, Perfil (Admin/Usuário)
-  - Ações:
-    - Promover → POST `promover`
-    - Rebaixar → POST `rebaixar` (não aplica a si mesmo)
-    - Excluir → POST `excluir_usuario` com confirmação (não aplica a si mesmo)
-- Tabela de Jogos:
-  - ID, Nome, Gênero, Preço
-  - Ação: Excluir → `../pages/jogo/excluir_jogos.php?id={id}` com confirmação
-
----
-
-### 🔧 Arquivos de Configuração
-
-**`includes/conexao.php`** - Conexão com Banco
-```php
-// Conecta ao PostgreSQL
-$conn = pg_connect("
-    host=localhost
-    port=5432
-    dbname=gameintel
-    user=postgres
-    password=postgres
-");
-```
-
-**`includes/auth_check.php`** - Autenticação
-```php
-// Valida sessão
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../public/index.php");
-    exit();
-}
-
-// Função para validar admin
-function requireAdmin() {
-    if (empty($_SESSION['is_admin'])) {
-        header("Location: ../pages/home.php");
-        exit();
-    }
-}
+```text
+http://localhost:8000
 ```
 
 ---
 
-## 📋 Resumo de Fluxo
+# 9. Análise de Risco
 
-```
-1. Usuário acessa http://localhost:8000/
-   ↓
-2. index.php redireciona para public/index.php
-   ↓
-3. Login com credenciais
-   ↓
-4. Cria sessão e redireciona para pages/home.php
-   ↓
-5. Exibe catálogo de jogos
-   ├─ Clica em jogo → pages/jogo/jogo.php
-   ├─ Adiciona ao carrinho → localStorage
-   ├─ Vai para pages/carrinho.php
-   ├─ Finaliza compra → POST → BD (pedidos)
-   │
-   └─ (Se Admin)
-      ├─ Acessa admin/admin.php
-      ├─ Gerencia usuários e jogos
-      └─ Adiciona novos jogos via pages/jogo/adicionar_jogo.php
-```
+| Risco           | Impacto | Mitigação              |
+| --------------- | ------- | ---------------------- |
+| Perda de sessão | Alto    | Validação contínua     |
+| SQL Injection   | Alto    | Prepared Statements    |
+| Acesso indevido | Alto    | Controle de permissões |
+| Dados inválidos | Médio   | Validação backend      |
 
 ---
 
-## ✅ Checklist de Verificação
+# 10. Controle de Versão
 
-- [x] Todos os includes usam caminhos relativos (`../`)
-- [x] Redirecionamentos apontam para URLs corretas
-- [x] CSS em `public/css/style.css`
-- [x] Imagens em `public/img/`
-- [x] Banco de dados em `database/backup.sql`
-- [x] Autenticação em `includes/auth_check.php`
-- [x] Conexão em `includes/conexao.php`
-- [x] Admin protegido com `requireAdmin()`
-- [x] Proteção contra SQL injection com `pg_query_params`
-- [x] Proteção contra XSS com `htmlspecialchars`
+| Versão | Data       | Alteração                                |
+| ------ | ---------- | ---------------------------------------- |
+| 1.0.0  | 2026-06-16 | Versão inicial da documentação GameIntel |
 
 ---
 
-## 🎯 Próximas Melhorias (Opcional)
+# 11. Funcionalidades Implementadas
 
-- [ ] Implementar arquivo `.env` para credenciais
-- [ ] Adicionar autoloader PSR-4 com Composer
-- [ ] Implementar validações mais robustas em formulários
-- [ ] Adicionar sistema de notificações por email
-- [ ] Implementar paginação em listagens
-- [ ] Adicionar sistema de reviews/comentários
-- [ ] Implementar filtros de preço e busca
-- [ ] Adicionar recuperação de senha
+* Cadastro de usuários
+* Login e logout
+* Controle de acesso por perfil
+* Catálogo de jogos
+* Página de detalhes
+* Carrinho de compras
+* Checkout
+* Histórico de pedidos
+* Dashboard administrativo
+* CRUD de jogos
+* Gerenciamento de usuários
+* PostgreSQL
+* Sessions PHP
+* password_hash()
+* pg_query_params()
+* Proteção contra SQL Injection
+* Proteção contra XSS
+* Interface responsiva
+* Controle de permissões administrativas
 
 ---
 
-## 📞 Suporte
-
-Para dúvidas ou problemas, revise:
-1. Credenciais do banco de dados em `includes/conexao.php`
-2. Permissões de pasta (public deve ter permissão de escrita)
-3. Versão do PHP (recomendado 8.0+)
-4. Extensão PostgreSQL habilitada no PHP
-
----
-
-© 2026 GameIntel - Todos os direitos reservados.
+© 2026 GameIntel
